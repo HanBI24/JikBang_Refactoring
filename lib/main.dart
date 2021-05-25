@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jikbang_refactoring/screen/concierge_screen.dart';
-import 'package:jikbang_refactoring/screen/estate_screen.dart';
-import 'package:jikbang_refactoring/screen/myhouse_screen.dart';
+import 'package:jikbang_refactoring/screen/main/concierge_screen.dart';
+import 'package:jikbang_refactoring/screen/main/estate_screen.dart';
+import 'package:jikbang_refactoring/screen/main/myhouse_screen.dart';
 import 'package:jikbang_refactoring/widget/bottom_nav_bar.dart';
 
 void main() {

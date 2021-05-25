@@ -1,14 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jikbang_refactoring/screen/second/second_screen.dart';
 
 class RealEstate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
-    final double itemHeight = (size.height - kToolbarHeight - 24) / 2;
-    final double itemWidth = size.width / 2;
-
     return Scaffold(
       backgroundColor: Colors.black12,
       body: Center(
@@ -75,7 +71,7 @@ class RealEstate extends StatelessWidget {
                             Column(
                               children: <Widget>[
                                 Text(
-                                    '빌라, 투룸+',
+                                    '빌라    ',
                                     style: TextStyle(fontSize: 28)
                                 ),
                                 Text('신축분양/매매\n전, 월세')
@@ -100,15 +96,20 @@ class RealEstate extends StatelessWidget {
                             Column(
                               children: <Widget>[
                                 Text(
-                                    '아파트',
+                                    '원룸',
                                     style: TextStyle(fontSize: 28)
                                 ),
-                                Text('매매/전, 월세\n신축분양'),
+                                Text('전, 월세'),
                               ],
                             ),
                           ],
                         ),
-                        onPressed: (){},
+                        onPressed: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SecondScreen())
+                          );
+                        },
                       ),
                     ),
                     Container(
@@ -125,10 +126,10 @@ class RealEstate extends StatelessWidget {
                             Column(
                               children: <Widget>[
                                 Text(
-                                    '아파트',
+                                    '오피스텔',
                                     style: TextStyle(fontSize: 28)
                                 ),
-                                Text('매매/전, 월세\n신축분양')
+                                Text('도시형생활주택\n전, 월세')
                               ],
                             ),
                           ],
