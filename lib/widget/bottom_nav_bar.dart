@@ -8,11 +8,12 @@ class BottomNavBar extends StatelessWidget {
       child: Container(
         height: 50,
         child: TabBar(
+          unselectedLabelColor: Colors.black54,
           tabs: <Widget>[
             Tab(
               icon: Icon(
                 Icons.home_work_sharp,
-                size: 18
+                size: 18,
               ),
               child: Text(
                 '부동산',
@@ -40,6 +41,7 @@ class BottomNavBar extends StatelessWidget {
               ),
             ),
           ],
+          labelColor: Colors.orange,
         ),
       ),
     );
