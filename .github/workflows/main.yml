@@ -36,7 +36,7 @@ jobs:
     - run: mv build/app/outputs/flutter-apk/app-release.apk ./Jik_Refact.apk
 
       uese: actions/upload-artifact@v1
-      with:
-        name: android-build
-        path: ./Jik_Refact.apk
+#      with:
+#        name: android-build
+#        path: ./Jik_Refact.apk
 
