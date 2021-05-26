@@ -32,9 +32,9 @@ jobs:
     - run: flutter pub get
 #    - run: flutter test
     - run: flutter build apk
-    - name: Rename APK
-      run: mv build/app/outputs/flutter-apk/app-release.apk ./Jik_Refact.apk
-    - name: Archive APK
+
+    - run: mv build/app/outputs/flutter-apk/app-release.apk ./Jik_Refact.apk
+
       uese: actions/upload-artifact@v1
       with:
         name: android-build
