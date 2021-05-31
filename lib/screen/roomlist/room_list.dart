@@ -154,9 +154,9 @@ class _RoomList extends State<RoomList> {
                               opacity: isListTouched ? 0.0 : 1.0,
                               duration: Duration(milliseconds: 500),
                               child: SpeechBubble(
-                                    color: Colors.orange,
-                                    nipLocation: NipLocation.BOTTOM,
-                                    child: Text('길게 누르면 삭제할 수 있습니다.')),
+                                  color: Colors.orange,
+                                  nipLocation: NipLocation.BOTTOM,
+                                  child: Text('길게 누르면 삭제할 수 있습니다.')),
                             ),
                           )
                         ],
@@ -192,78 +192,77 @@ class _RoomList extends State<RoomList> {
             ),
           ),
           Expanded(
-            child: NotificationListener(
-              child: ListView.builder(
-                  padding: const EdgeInsets.all(10.0),
-                  itemCount: roomList.length,
-                  itemBuilder: (context, position) {
-                    return GestureDetector(
-                      child: Card(
-                        child: Row(
-                          children: <Widget>[
-                            Image.asset(roomList[position].imgPath,
-                                height: 100, width: 100, fit: BoxFit.contain),
-                            Container(
-                                padding: const EdgeInsets.fromLTRB(
-                                    30.0, 10.0, 10.0, 10.0),
-                                child: Row(
-                                  children: <Widget>[
-                                    Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(roomList[position].recommend),
-                                          Text(roomList[position].roomPrice),
-                                          Text(roomList[position].arch),
-                                          Text(roomList[position].location),
-                                          Text(roomList[position].comment)
-                                        ],
-                                      ),
+              child: NotificationListener(
+            child: ListView.builder(
+                padding: const EdgeInsets.all(10.0),
+                itemCount: roomList.length,
+                itemBuilder: (context, position) {
+                  return GestureDetector(
+                    child: Card(
+                      child: Row(
+                        children: <Widget>[
+                          Image.asset(roomList[position].imgPath,
+                              height: 100, width: 100, fit: BoxFit.contain),
+                          Container(
+                              padding: const EdgeInsets.fromLTRB(
+                                  30.0, 10.0, 10.0, 10.0),
+                              child: Row(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(roomList[position].recommend),
+                                        Text(roomList[position].roomPrice),
+                                        Text(roomList[position].arch),
+                                        Text(roomList[position].location),
+                                        Text(roomList[position].comment)
+                                      ],
                                     ),
-                                  ],
-                                ))
-                          ],
-                        ),
+                                  ),
+                                ],
+                              ))
+                        ],
                       ),
-                      onLongPress: () {
-                        AlertDialog dialog = AlertDialog(
-                          title: Text('삭제'),
-                          content: Text(
-                              '${roomList[position].roomPrice}\n${roomList[position].location}\n이 방을 삭제하시겠습니까?'),
-                          actions: [
-                            ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    roomList.removeAt(position);
-                                  });
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('예')),
-                            ElevatedButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('아니요')),
-                          ],
-                        );
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) => dialog);
-                      },
-                    );
-                  }),
-              onNotification: (notification) {
-                if(notification is ScrollEndNotification) {
-                  setState(() {
-                    isListTouched = !isListTouched;
-                  });
-                }
-                return true;
-              },
-            )
-          )
+                    ),
+                    onLongPress: () {
+                      AlertDialog dialog = AlertDialog(
+                        title: Text('삭제'),
+                        content: Text(
+                            '${roomList[position].roomPrice}\n${roomList[position].location}\n이 방을 삭제하시겠습니까?'),
+                        actions: [
+                          ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  roomList.removeAt(position);
+                                });
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('예')),
+                          ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('아니요')),
+                        ],
+                      );
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => dialog);
+                    },
+                  );
+                }),
+            onNotification: (notification) {
+              if (notification is ScrollEndNotification) {
+                setState(() {
+                  isListTouched = !isListTouched;
+                });
+              }
+              return true;
+            },
+          ))
         ],
       ),
     ));
