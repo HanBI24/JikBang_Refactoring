@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jikbang_refactoring/model/room_item.dart';
 import 'package:jikbang_refactoring/screen/filterlist/filterlist_screen.dart';
-import 'package:jikbang_refactoring/screen/roomlist/roomlist_add.dart';
+import 'file:///D:/univ_2021/HCI/HCI_final/proto/jikbang_refactoring/lib/model/roomitem_dummy.dart';
 
 enum Trade { ALL, MONTH, CHARTER }
 
 class RoomList extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _RoomList();
+  _RoomList createState() => _RoomList();
 }
 
 class _RoomList extends State<RoomList> {
@@ -17,26 +17,30 @@ class _RoomList extends State<RoomList> {
   @override
   void initState() {
     super.initState();
-    listAddItem();
-    for (int i = 0; i < roomList.length; i++) {
-      if (roomList[i].comment.length > 22) {
-        roomList[i].comment = roomList[i].comment.substring(0, 22);
-        roomList[i].comment += "...";
-      }
-    }
+    _listAddItem();
+    _addDotOverText();
   }
 
-  listAddItem() {
+  _listAddItem() {
+    RoomItem room0 = RoomListAdd().roomAdd0();
     RoomItem room1 = RoomListAdd().roomAdd1();
     RoomItem room2 = RoomListAdd().roomAdd2();
     RoomItem room3 = RoomListAdd().roomAdd3();
     RoomItem room4 = RoomListAdd().roomAdd4();
-    RoomItem room5 = RoomListAdd().roomAdd5();
+    roomList.add(room0);
     roomList.add(room1);
     roomList.add(room2);
     roomList.add(room3);
     roomList.add(room4);
-    roomList.add(room5);
+  }
+
+  _addDotOverText() {
+    for (int i = 0; i < roomList.length; i++) {
+      if (roomList[i].comment.length > 21) {
+        roomList[i].comment = roomList[i].comment.substring(0, 21);
+        roomList[i].comment += "...";
+      }
+    }
   }
 
   @override
@@ -159,6 +163,7 @@ class _RoomList extends State<RoomList> {
           ),
           Expanded(
             child: ListView.builder(
+                padding: const EdgeInsets.all(10.0),
                 itemCount: roomList.length,
                 itemBuilder: (context, position) {
                   return GestureDetector(
@@ -168,23 +173,52 @@ class _RoomList extends State<RoomList> {
                           Image.asset(roomList[position].imgPath,
                               height: 100, width: 100, fit: BoxFit.contain),
                           Container(
-                            padding: const EdgeInsets.fromLTRB(
-                                30.0, 10.0, 10.0, 10.0),
-                            alignment: Alignment.centerLeft,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(roomList[position].recommend),
-                                Text(roomList[position].roomPrice),
-                                Text(roomList[position].arch),
-                                Text(roomList[position].location),
-                                Text(roomList[position].comment)
-                              ],
-                            ),
-                          )
+                              padding: const EdgeInsets.fromLTRB(
+                                  30.0, 10.0, 10.0, 10.0),
+                              child: Row(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(roomList[position].recommend),
+                                        Text(roomList[position].roomPrice),
+                                        Text(roomList[position].arch),
+                                        Text(roomList[position].location),
+                                        Text(roomList[position].comment)
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ))
                         ],
                       ),
                     ),
+                    onLongPress: () {
+                      AlertDialog dialog = AlertDialog(
+                        title: Text('삭제'),
+                        content: Text(
+                            '${roomList[position].roomPrice}\n${roomList[position].location}\n이 방을 삭제하시겠습니까?'),
+                        actions: [
+                          ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  roomList.removeAt(position);
+                                });
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('예')),
+                          ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('아니요')),
+                        ],
+                      );
+                      showDialog(context: context, builder: (BuildContext context) => dialog);
+                    },
                   );
                 }),
           )
