@@ -24,11 +24,14 @@ class _RoomList extends State<RoomList> {
   }
 
   _listAddItem() {
-    RoomItem room0 = RoomListAdd().roomAdd0();
-    RoomItem room1 = RoomListAdd().roomAdd1();
-    RoomItem room2 = RoomListAdd().roomAdd2();
-    RoomItem room3 = RoomListAdd().roomAdd3();
-    RoomItem room4 = RoomListAdd().roomAdd4();
+    RoomListAdd roomListAdd = RoomListAdd();
+
+    RoomItem room0 = roomListAdd.roomAdd0();
+    RoomItem room1 = roomListAdd.roomAdd1();
+    RoomItem room2 = roomListAdd.roomAdd2();
+    RoomItem room3 = roomListAdd.roomAdd3();
+    RoomItem room4 = roomListAdd.roomAdd4();
+
     roomList.add(room0);
     roomList.add(room1);
     roomList.add(room2);
