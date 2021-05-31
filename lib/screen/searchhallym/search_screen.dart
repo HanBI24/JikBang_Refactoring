@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:jikbang_refactoring/screen/roomlist/room_list.dart';
 
 class SearchHallym extends StatelessWidget{
   @override
@@ -9,7 +11,7 @@ class SearchHallym extends StatelessWidget{
         actions: <Widget>[
           IconButton(icon: Icon(Icons.search) ,onPressed: (){
             showSearch(context: context, delegate: DataSearch());
-          })
+          }),
         ],
       ),
       //drawer: Drawer(),
@@ -59,7 +61,7 @@ class DataSearch extends SearchDelegate<String>{
 
   @override
   Widget buildResults(BuildContext context) {
-
+    return Image.asset('images/hallym.jpg');
   }
 
   @override
