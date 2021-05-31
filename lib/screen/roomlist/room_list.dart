@@ -24,7 +24,7 @@ class _RoomList extends State<RoomList> {
   }
 
   _listAddItem() {
-    RoomListAdd roomListAdd = RoomListAdd();
+    RoomListAdd roomListAdd = new RoomListAdd();
 
     RoomItem room0 = roomListAdd.roomAdd0();
     RoomItem room1 = roomListAdd.roomAdd1();

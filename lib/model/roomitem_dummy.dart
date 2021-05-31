@@ -1,6 +1,8 @@
 import 'package:jikbang_refactoring/model/room_item.dart';
 
 class RoomListAdd {
+  RoomListAdd() {}
+
   roomAdd0() {
     RoomItem roomItem = RoomItem(
         position: 0,
