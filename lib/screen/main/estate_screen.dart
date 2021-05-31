@@ -28,7 +28,12 @@ class RealEstate extends StatelessWidget {
                         Container(
                           width: 130,
                         ),
-                        Icon(Icons.settings)
+                        GestureDetector(
+                          child: Icon(Icons.settings),
+                          onTap: () {
+
+                          },
+                        )
                       ],
                     )
                   )
