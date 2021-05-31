@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jikbang_refactoring/screen/filterlist/filterlist_screen.dart';
+import 'package:jikbang_refactoring/screen/roomlist/room_list.dart';
 
 enum Trade { ALL, MONTH, CHARTER }
 
@@ -41,7 +43,7 @@ class _FilterMap extends State<FilterMap> {
                 Icon(Icons.arrow_back_outlined),
                 Flexible(
                     child: Container(
-                  width: 370,
+                  width: 400,
                   height: 42,
                   padding: const EdgeInsets.only(left: 20.0, top: 10.0),
                   child: TextField(
@@ -122,27 +124,39 @@ class _FilterMap extends State<FilterMap> {
                               });
                         },
                       ),
-                      Container(
-                        width: 280,
-                        height: 32,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
-                        ),
-                        child: Text('검색 조건을 설정해주세요.'),
-                      ),
-                      Container(
-                        width: 62,
-                        height: 32,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black)),
+                      GestureDetector(
                         child: Row(
                           children: <Widget>[
-                            Icon(Icons.filter_list_alt),
-                            Text('필터')
+                            Container(
+                              width: 260,
+                              height: 32,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black),
+                              ),
+                              child: Text('검색 조건을 설정해주세요.'),
+                            ),
+                            Container(
+                              width: 62,
+                              height: 32,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black)),
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(Icons.filter_list_alt),
+                                  Text('필터')
+                                ],
+                              ),
+                            ),
                           ],
                         ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FilterList()));
+                        },
                       )
                     ],
                   ),
@@ -154,13 +168,17 @@ class _FilterMap extends State<FilterMap> {
               decoration: BoxDecoration(color: Colors.greenAccent),
             ),
             Container(
-              width: double.infinity,
+                width: double.infinity,
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.orange,
-                    onPrimary: Colors.white
-                  ),
-                    onPressed: () {}, child: Text('이 지역  매물 보기'))),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.orange, onPrimary: Colors.white),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RoomList()));
+                    },
+                    child: Text('이 지역  매물 보기'))),
           ],
         ),
       ),
