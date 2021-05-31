@@ -260,6 +260,7 @@ class _RoomList extends State<RoomList> {
                     isListTouched = !isListTouched;
                   });
                 }
+                return true;
               },
             )
           )
