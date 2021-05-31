@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jikbang_refactoring/screen/filterlist/filterlist_screen.dart';
-import 'package:jikbang_refactoring/screen/searchhallym/search_screen.dart';
 import 'package:jikbang_refactoring/screen/second/second_screen.dart';
 import 'package:jikbang_refactoring/screen/settings/setting_screen.dart';
 
