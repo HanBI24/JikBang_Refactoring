@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:jikbang_refactoring/screen/roomlist/room_list.dart';
-import 'package:jikbang_refactoring/screen/second/second_screen.dart';
 
 class SearchHallym extends StatelessWidget {
   @override
@@ -9,11 +9,10 @@ class SearchHallym extends StatelessWidget {
       appBar: AppBar(
         title: Text("지역, 지하철역, 학교 검색"),
         actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                showSearch(context: context, delegate: DataSearch());
-              })
+          IconButton(icon: Icon(Icons.search) ,onPressed: (){
+            showSearch(context: context, delegate: DataSearch());
+          }),
+
         ],
       ),
       //drawer: Drawer(),
@@ -59,7 +58,9 @@ class DataSearch extends SearchDelegate<String> {
   }
 
   @override
-  Widget buildResults(BuildContext context) {}
+  Widget buildResults(BuildContext context) {
+    return Image.asset('images/hallym.jpg');
+  }
 
   @override
   Widget buildSuggestions(BuildContext context) {
