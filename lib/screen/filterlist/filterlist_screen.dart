@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:jikbang_refactoring/screen/seekbarlist/seekbar_screen1.dart';
-import 'package:jikbang_refactoring/screen/seekbarlist/seekbar_screen2.dart';
+import 'package:jikbang_refactoring/widget/seekbarlist/seekbar_screen1.dart';
+import 'package:jikbang_refactoring/widget/seekbarlist/seekbar_screen2.dart';
 
 class FilterList extends StatelessWidget {
   @override

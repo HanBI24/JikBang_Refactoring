@@ -21,6 +21,17 @@ class RealEstate extends StatelessWidget {
                     '어떤 집을 찾고 계세요?',
                     style: TextStyle(fontSize: 20),
                   ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          width: 130,
+                        ),
+                        Icon(Icons.settings)
+                      ],
+                    )
+                  )
                 ],
               ),
             ),

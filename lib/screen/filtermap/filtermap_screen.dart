@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jikbang_refactoring/screen/filterlist/filterlist_screen.dart';
+import 'package:jikbang_refactoring/screen/roomlist/room_list.dart';
 
 enum Trade { ALL, MONTH, CHARTER }
 
@@ -171,7 +172,12 @@ class _FilterMap extends State<FilterMap> {
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Colors.orange, onPrimary: Colors.white),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RoomList()));
+                    },
                     child: Text('이 지역  매물 보기'))),
           ],
         ),
