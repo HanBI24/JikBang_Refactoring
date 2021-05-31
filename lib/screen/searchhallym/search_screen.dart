@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:flutter/cupertino.dart';
 import 'package:jikbang_refactoring/screen/roomlist/room_list.dart';
-=======
-import 'package:jikbang_refactoring/screen/roomlist/room_list.dart';
-import 'package:jikbang_refactoring/screen/second/second_screen.dart';
->>>>>>> 92188e90bb49e8a5bb8d7604cddd83934fe566b2
 
 class SearchHallym extends StatelessWidget {
   @override
@@ -14,17 +9,10 @@ class SearchHallym extends StatelessWidget {
       appBar: AppBar(
         title: Text("지역, 지하철역, 학교 검색"),
         actions: <Widget>[
-<<<<<<< HEAD
           IconButton(icon: Icon(Icons.search) ,onPressed: (){
             showSearch(context: context, delegate: DataSearch());
           }),
-=======
-          IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                showSearch(context: context, delegate: DataSearch());
-              })
->>>>>>> 92188e90bb49e8a5bb8d7604cddd83934fe566b2
+
         ],
       ),
       //drawer: Drawer(),
@@ -70,13 +58,9 @@ class DataSearch extends SearchDelegate<String> {
   }
 
   @override
-<<<<<<< HEAD
   Widget buildResults(BuildContext context) {
     return Image.asset('images/hallym.jpg');
   }
-=======
-  Widget buildResults(BuildContext context) {}
->>>>>>> 92188e90bb49e8a5bb8d7604cddd83934fe566b2
 
   @override
   Widget buildSuggestions(BuildContext context) {
