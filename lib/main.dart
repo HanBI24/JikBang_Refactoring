@@ -6,6 +6,8 @@ import 'package:jikbang_refactoring/screen/main/myhouse_screen.dart';
 import 'package:jikbang_refactoring/splash/animation_screen.dart';
 import 'package:jikbang_refactoring/widget/bottom_nav_bar.dart';
 
+import 'globals_variable.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -20,6 +22,8 @@ class _MyHomePageState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: isDark ? ThemeData.light() : ThemeData.dark(),
+        darkTheme: ThemeData.dark(),
         home: Stack(
           textDirection: TextDirection.ltr,
             children: <Widget>[

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jikbang_refactoring/model/room_item.dart';
@@ -5,7 +7,6 @@ import 'package:jikbang_refactoring/screen/accuracysearch/photo_screen.dart';
 import 'package:jikbang_refactoring/screen/filterlist/filterlist_screen.dart';
 import 'package:speech_bubble/speech_bubble.dart';
 import 'package:jikbang_refactoring/model/roomitem_dummy.dart';
-
 
 enum Trade { ALL, MONTH, CHARTER }
 
@@ -17,6 +18,12 @@ class RoomList extends StatefulWidget {
 class _RoomList extends State<RoomList> {
   List<RoomItem> roomList = List<RoomItem>.empty(growable: true);
   bool isListTouched = false;
+  int _selectedIndex;
+  _onSelected(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   void initState() {
@@ -221,30 +228,48 @@ class _RoomList extends State<RoomList> {
                                   30.0, 10.0, 10.0, 10.0),
                               child: Row(
                                 children: <Widget>[
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Column(
-                                      mainAxisAlignment:
+                                  Stack(
+                                    children: <Widget>[
+
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Column(
+                                          mainAxisAlignment:
                                           MainAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(roomList[position].recommend),
-                                        Text(roomList[position].roomPrice),
-                                        Text(roomList[position].arch),
-                                        Text(roomList[position].location),
-                                        Text(roomList[position].comment)
-                                      ],
-                                    ),
-                                  ),
+                                          children: <Widget>[
+                                            Text(roomList[position].recommend),
+                                            Text(roomList[position].roomPrice),
+                                            Text(roomList[position].arch),
+                                            Text(roomList[position].location),
+                                            Text(roomList[position].comment)
+                                          ],
+                                        ),
+                                      ),
+                                      Positioned(
+                                        width: 400,
+                                        top: 20,
+                                        child: IconButton(
+                                            icon: Icon(Icons.favorite,
+                                                color: _selectedIndex !=
+                                                    null &&
+                                                    _selectedIndex ==
+                                                        position
+                                                    ? Colors.redAccent
+                                                    : Colors.black12),
+                                            onPressed: () {
+                                              _onSelected(position);
+                                            }),
+                                      )
+                                    ],
+                                  )
                                 ],
                               ))
                         ],
                       ),
                     ),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RoomPhoto()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RoomPhoto()));
                     },
                     onLongPress: () {
                       AlertDialog dialog = AlertDialog(
@@ -257,12 +282,14 @@ class _RoomList extends State<RoomList> {
                                 setState(() {
                                   roomList.removeAt(position);
                                 });
-                                Navigator.of(context, rootNavigator: true).pop('dialog');
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop('dialog');
                               },
                               child: Text('예')),
                           ElevatedButton(
                               onPressed: () {
-                                Navigator.of(context, rootNavigator: true).pop('dialog');
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop('dialog');
                               },
                               child: Text('아니요')),
                         ],
