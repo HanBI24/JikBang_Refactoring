@@ -11,9 +11,6 @@ class SearchHallym extends StatelessWidget {
       appBar: AppBar(
         title: Text("지역, 지하철역, 학교 검색"),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.search) ,onPressed: (){
-            showSearch(context: context, delegate: DataSearch());
-          }),
           IconButton(
               icon: Icon(Icons.search),
               onPressed: () {
@@ -76,6 +73,14 @@ class DataSearch extends SearchDelegate<String> {
 
     return ListView.builder(
       itemBuilder: (context, index) => ListTile(
+        onTap: () {
+          // showResults(context);
+          // 검색 결과 리스트로 이동.
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => RoomList())
+          );
+        },
         leading: Icon(Icons.location_city),
         title: RichText(
           text: TextSpan(
