@@ -166,19 +166,39 @@ class _FilterMap extends State<FilterMap> {
               ],
             ),
             Container(
-              height: 520,
-              child: Image.asset('images/hallym.jpg', fit: BoxFit.contain)
-            ),
+                height: 520,
+                child: Stack(
+                  children: <Widget>[
+                    Image.asset('images/hallym.jpg', fit: BoxFit.contain),
+                    Positioned(
+                      width: 350,
+                      top: 350,
+                      child: FloatingActionButton(
+                          child: Text(
+                            '30',
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          backgroundColor: Colors.orangeAccent,
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => RoomList()));
+                          }),
+                    ),
+                  ],
+                )),
             Container(
                 width: double.infinity,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Colors.orange, onPrimary: Colors.white),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RoomList()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RoomList()));
                     },
                     child: Text('이 지역  매물 보기'))),
           ],
