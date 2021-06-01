@@ -9,6 +9,8 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreen extends State<SettingScreen> {
   bool isSwitched = true;
   final ValueNotifier<ThemeMode> _notifier = ValueNotifier(ThemeMode.light);
+  bool isDarkClicked = false;
+  String btnDarkText = '다크모드 전환';
 
   @override
   Widget build(BuildContext context) {
@@ -115,16 +117,33 @@ class _SettingScreen extends State<SettingScreen> {
                           ],
                         ),
                       ),
-                      ElevatedButton(
-                        onPressed: () {
-                          _notifier.value = mode == ThemeMode.light
-                              ? ThemeMode.dark
-                              : ThemeMode.light;
-                          setState(() {
-                          });
-                        },
-                        child: Text('Toggle Theme'),
-                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black12)),
+                        padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
+                        alignment: Alignment.centerLeft,
+                        child: Row(
+                          children: <Widget>[
+                            Text('다크모드', style: TextStyle(fontSize: 20),),
+                            Container(
+                              padding: const EdgeInsets.only(left: 150),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(primary: Colors.orangeAccent),
+                                onPressed: () {
+                                  _notifier.value = mode == ThemeMode.light
+                                      ? ThemeMode.dark
+                                      : ThemeMode.light;
+                                  setState(() {
+                                    isDarkClicked = !isDarkClicked;
+                                    isDarkClicked ? btnDarkText = '일반모드 전환' : btnDarkText = '다크모드 전환';
+                                  });
+                                },
+                                child: Text('$btnDarkText'),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
