@@ -255,6 +255,10 @@ class _RoomList extends State<RoomList> {
                           context: context,
                           builder: (BuildContext context) => dialog);
                     },
+                    onTap: () {
+                      // 상세페이지 넘어가기
+                      print("test ontap");
+                    },
                   );
                 }),
             onNotification: (notification) {
