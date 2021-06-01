@@ -240,6 +240,12 @@ class _RoomList extends State<RoomList> {
                         ],
                       ),
                     ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RoomPhoto()));
+                    },
                     onLongPress: () {
                       AlertDialog dialog = AlertDialog(
                         title: Text('삭제'),
@@ -251,12 +257,12 @@ class _RoomList extends State<RoomList> {
                                 setState(() {
                                   roomList.removeAt(position);
                                 });
-                                Navigator.of(context).pop();
+                                Navigator.of(context, rootNavigator: true).pop('dialog');
                               },
                               child: Text('예')),
                           ElevatedButton(
                               onPressed: () {
-                                Navigator.of(context).pop();
+                                Navigator.of(context, rootNavigator: true).pop('dialog');
                               },
                               child: Text('아니요')),
                         ],
@@ -264,12 +270,6 @@ class _RoomList extends State<RoomList> {
                       showDialog(
                           context: context,
                           builder: (BuildContext context) => dialog);
-                    },
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RoomPhoto()));
                     },
                   );
                 }),

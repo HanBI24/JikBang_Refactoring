@@ -19,6 +19,7 @@ class _MyHomePageState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Stack(
           textDirection: TextDirection.ltr,
             children: <Widget>[
