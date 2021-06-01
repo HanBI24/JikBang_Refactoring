@@ -6,10 +6,6 @@ import 'package:jikbang_refactoring/screen/searchhallym/search_screen.dart';
 
 enum Trade { ALL, MONTH, CHARTER }
 
-void main() {
-  runApp(FilterMyApp());
-}
-
 class FilterMyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -28,11 +24,13 @@ class FilterMap extends StatefulWidget {
 }
 
 class _FilterMap extends State<FilterMap> {
-  var _isChecked = false;
   Trade _trade = Trade.ALL;
 
   @override
   Widget build(BuildContext context) {
+    FocusScopeNode currentFocus = FocusScope.of(context);
+    currentFocus.unfocus();
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -169,7 +167,7 @@ class _FilterMap extends State<FilterMap> {
             ),
             Container(
               height: 520,
-              decoration: BoxDecoration(color: Colors.greenAccent),
+              child: Image.asset('images/hallym.jpg', fit: BoxFit.contain)
             ),
             Container(
                 width: double.infinity,

@@ -1,42 +1,61 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jikbang_refactoring/model/room_item.dart';
+import 'package:jikbang_refactoring/screen/accuracysearch/photo_screen.dart';
 import 'package:jikbang_refactoring/screen/filterlist/filterlist_screen.dart';
-import 'package:jikbang_refactoring/screen/roomlist/roomlist_add.dart';
+import 'package:speech_bubble/speech_bubble.dart';
+import 'package:jikbang_refactoring/model/roomitem_dummy.dart';
+
 
 enum Trade { ALL, MONTH, CHARTER }
 
 class RoomList extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _RoomList();
+  _RoomList createState() => _RoomList();
 }
 
 class _RoomList extends State<RoomList> {
   List<RoomItem> roomList = List<RoomItem>.empty(growable: true);
+  bool isListTouched = false;
 
   @override
   void initState() {
     super.initState();
-    listAddItem();
-    for (int i = 0; i < roomList.length; i++) {
-      if (roomList[i].comment.length > 22) {
-        roomList[i].comment = roomList[i].comment.substring(0, 22);
-        roomList[i].comment += "...";
-      }
-    }
+    _listAddItem();
+    _addDotOverText();
   }
 
-  listAddItem() {
-    RoomItem room1 = RoomListAdd().roomAdd1();
-    RoomItem room2 = RoomListAdd().roomAdd2();
-    RoomItem room3 = RoomListAdd().roomAdd3();
-    RoomItem room4 = RoomListAdd().roomAdd4();
-    RoomItem room5 = RoomListAdd().roomAdd5();
+  _listAddItem() {
+    RoomListAdd roomListAdd = new RoomListAdd();
+
+    RoomItem room0 = roomListAdd.roomAdd0();
+    RoomItem room1 = roomListAdd.roomAdd1();
+    RoomItem room2 = roomListAdd.roomAdd2();
+    RoomItem room3 = roomListAdd.roomAdd3();
+    RoomItem room4 = roomListAdd.roomAdd4();
+    RoomItem room5 = roomListAdd.roomAdd5();
+    RoomItem room6 = roomListAdd.roomAdd6();
+    RoomItem room7 = roomListAdd.roomAdd7();
+    RoomItem room8 = roomListAdd.roomAdd8();
+
+    roomList.add(room0);
     roomList.add(room1);
     roomList.add(room2);
     roomList.add(room3);
     roomList.add(room4);
     roomList.add(room5);
+    roomList.add(room6);
+    roomList.add(room7);
+    roomList.add(room8);
+  }
+
+  _addDotOverText() {
+    for (int i = 0; i < roomList.length; i++) {
+      if (roomList[i].comment.length > 21) {
+        roomList[i].comment = roomList[i].comment.substring(0, 21);
+        roomList[i].comment += "...";
+      }
+    }
   }
 
   @override
@@ -65,18 +84,25 @@ class _RoomList extends State<RoomList> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 GestureDetector(
-                  child: Container(
-                    width: 60,
-                    height: 32,
-                    alignment: Alignment.center,
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.black)),
-                    child: Row(
-                      children: <Widget>[
-                        Text('전체'),
-                        Icon(Icons.keyboard_arrow_down)
-                      ],
-                    ),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        width: 60,
+                        height: 32,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black)),
+                        child: Row(
+                          children: <Widget>[
+                            Text('전체'),
+                            Icon(Icons.keyboard_arrow_down)
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 37,
+                      )
+                    ],
                   ),
                   onTap: () {
                     showDialog(
@@ -125,28 +151,49 @@ class _RoomList extends State<RoomList> {
                 GestureDetector(
                   child: Row(
                     children: <Widget>[
-                      Container(
-                        width: 250,
-                        height: 32,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
-                        ),
-                        child: Text('검색 조건을 설정해주세요.'),
+                      Column(
+                        children: <Widget>[
+                          Container(
+                            width: 250,
+                            height: 32,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black),
+                            ),
+                            child: Text('검색 조건을 설정해주세요.'),
+                          ),
+                          Container(
+                            child: AnimatedOpacity(
+                              opacity: isListTouched ? 0.0 : 1.0,
+                              duration: Duration(milliseconds: 500),
+                              child: SpeechBubble(
+                                  color: Colors.orange,
+                                  nipLocation: NipLocation.BOTTOM,
+                                  child: Text('길게 누르면 삭제할 수 있습니다.')),
+                            ),
+                          )
+                        ],
                       ),
-                      Container(
-                        width: 62,
-                        height: 32,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black)),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.filter_list_alt),
-                            Text('필터')
-                          ],
-                        ),
-                      ),
+                      Column(
+                        children: <Widget>[
+                          Container(
+                            width: 62,
+                            height: 32,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black)),
+                            child: Row(
+                              children: <Widget>[
+                                Icon(Icons.filter_list_alt),
+                                Text('필터')
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 37,
+                          )
+                        ],
+                      )
                     ],
                   ),
                   onTap: () {
@@ -158,7 +205,9 @@ class _RoomList extends State<RoomList> {
             ),
           ),
           Expanded(
+              child: NotificationListener(
             child: ListView.builder(
+                padding: const EdgeInsets.all(10.0),
                 itemCount: roomList.length,
                 itemBuilder: (context, position) {
                   return GestureDetector(
@@ -168,26 +217,71 @@ class _RoomList extends State<RoomList> {
                           Image.asset(roomList[position].imgPath,
                               height: 100, width: 100, fit: BoxFit.contain),
                           Container(
-                            padding: const EdgeInsets.fromLTRB(
-                                30.0, 10.0, 10.0, 10.0),
-                            alignment: Alignment.centerLeft,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(roomList[position].recommend),
-                                Text(roomList[position].roomPrice),
-                                Text(roomList[position].arch),
-                                Text(roomList[position].location),
-                                Text(roomList[position].comment)
-                              ],
-                            ),
-                          )
+                              padding: const EdgeInsets.fromLTRB(
+                                  30.0, 10.0, 10.0, 10.0),
+                              child: Row(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(roomList[position].recommend),
+                                        Text(roomList[position].roomPrice),
+                                        Text(roomList[position].arch),
+                                        Text(roomList[position].location),
+                                        Text(roomList[position].comment)
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ))
                         ],
                       ),
                     ),
+                    onLongPress: () {
+                      AlertDialog dialog = AlertDialog(
+                        title: Text('삭제'),
+                        content: Text(
+                            '${roomList[position].roomPrice}\n${roomList[position].location}\n이 방을 삭제하시겠습니까?'),
+                        actions: [
+                          ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  roomList.removeAt(position);
+                                });
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('예')),
+                          ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('아니요')),
+                        ],
+                      );
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => dialog);
+                    },
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RoomPhoto()));
+                    },
                   );
                 }),
-          )
+            onNotification: (notification) {
+              if (notification is ScrollEndNotification) {
+                setState(() {
+                  isListTouched = !isListTouched;
+                });
+              }
+              return true;
+            },
+          ))
         ],
       ),
     ));

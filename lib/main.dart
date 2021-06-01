@@ -18,6 +18,7 @@ class _MyHomePageState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '직방',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: Colors.white,

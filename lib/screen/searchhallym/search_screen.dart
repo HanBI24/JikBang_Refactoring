@@ -4,7 +4,6 @@ import 'package:jikbang_refactoring/screen/roomlist/room_list.dart';
 import 'package:jikbang_refactoring/screen/roomlist/room_list.dart';
 import 'package:jikbang_refactoring/screen/second/second_screen.dart';
 
-
 class SearchHallym extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
