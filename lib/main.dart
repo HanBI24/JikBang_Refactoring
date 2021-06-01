@@ -6,8 +6,6 @@ import 'package:jikbang_refactoring/screen/main/myhouse_screen.dart';
 import 'package:jikbang_refactoring/splash/animation_screen.dart';
 import 'package:jikbang_refactoring/widget/bottom_nav_bar.dart';
 
-import 'globals_variable.dart';
-
 
 void main() {
   runApp(MyApp());

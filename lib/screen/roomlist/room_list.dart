@@ -70,6 +70,7 @@ class _RoomList extends State<RoomList> {
     Trade _trade = Trade.ALL;
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(),
       darkTheme: ThemeData.dark(),
       home: Scaffold(

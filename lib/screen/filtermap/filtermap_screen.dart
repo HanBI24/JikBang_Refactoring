@@ -32,6 +32,7 @@ class _FilterMap extends State<FilterMap> {
     currentFocus.unfocus();
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(),
       darkTheme: ThemeData.dark(),
       home: Scaffold(

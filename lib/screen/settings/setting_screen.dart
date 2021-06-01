@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../globals_variable.dart';
-
 class SettingScreen extends StatefulWidget {
   @override
   _SettingScreen createState() => _SettingScreen();
@@ -18,6 +16,7 @@ class _SettingScreen extends State<SettingScreen> {
         valueListenable: _notifier,
         builder: (_, mode, __) {
           return MaterialApp(
+              debugShowCheckedModeBanner: false,
               theme: ThemeData(),
               darkTheme: ThemeData.dark(),
               themeMode: mode,
@@ -122,7 +121,6 @@ class _SettingScreen extends State<SettingScreen> {
                               ? ThemeMode.dark
                               : ThemeMode.light;
                           setState(() {
-                            isDark = true;
                           });
                         },
                         child: Text('Toggle Theme'),

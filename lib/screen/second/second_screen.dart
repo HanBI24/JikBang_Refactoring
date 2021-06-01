@@ -54,6 +54,7 @@ class _SecondScreen extends State<SecondScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(),
       darkTheme: ThemeData.dark(),
       home: Container(

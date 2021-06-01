@@ -28,7 +28,7 @@ class _RealEstate extends State<RealEstate> {
         );
       },
     );
-    new Future.delayed(new Duration(seconds: 3), () {
+    new Future.delayed(new Duration(seconds: 1), () {
       Navigator.of(context, rootNavigator: true)
           .pop();
     });
@@ -37,6 +37,7 @@ class _RealEstate extends State<RealEstate> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(),
       darkTheme: ThemeData.dark(),
       home: Scaffold(
