@@ -16,11 +16,8 @@ class _MainScreen extends State<MainScreen> {
     return MaterialApp(
       title: '직방',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primaryColor: Colors.white,
-        accentColor: Colors.white,
-      ),
+      theme: ThemeData(),
+      darkTheme: ThemeData.dark(),
       home: DefaultTabController(
         length: 3,
         child: Scaffold(

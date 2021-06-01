@@ -18,7 +18,7 @@ class _SettingScreen extends State<SettingScreen> {
         valueListenable: _notifier,
         builder: (_, mode, __) {
           return MaterialApp(
-              theme: ThemeData.light(),
+              theme: ThemeData(),
               darkTheme: ThemeData.dark(),
               themeMode: mode,
               home: Scaffold(

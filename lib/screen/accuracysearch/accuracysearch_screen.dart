@@ -9,6 +9,7 @@ class AccuracySearchMyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
+      darkTheme: ThemeData.dark(),
       home: AccuracySearch(),
     );
   }

@@ -10,6 +10,7 @@ class RoomPhotoMyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
+      darkTheme: ThemeData.dark(),
       home: RoomPhoto(),
     );
   }

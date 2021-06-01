@@ -22,7 +22,7 @@ class _MyHomePageState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: isDark ? ThemeData.light() : ThemeData.dark(),
+        theme: ThemeData(),
         darkTheme: ThemeData.dark(),
         home: Stack(
           textDirection: TextDirection.ltr,
